@@ -22,8 +22,6 @@ pub struct Arl {
     exec_stack: RpnExecutionStack,
 }
 
-impl Arl
-
 // General app information
 // let app = Command::new("arl")
 //     .version("0.1")
