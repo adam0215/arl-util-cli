@@ -1,0 +1,9 @@
+/Users/adamgustafsson/Desktop/-/CODE/Rust/util-cli/target/debug/deps/anstyle_parse-7f367af1646d169f.rmeta: /Users/adamgustafsson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-parse-0.2.1/src/lib.rs /Users/adamgustafsson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-parse-0.2.1/src/params.rs /Users/adamgustafsson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-parse-0.2.1/src/state/mod.rs /Users/adamgustafsson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-parse-0.2.1/src/state/definitions.rs /Users/adamgustafsson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-parse-0.2.1/src/state/table.rs
+
+/Users/adamgustafsson/Desktop/-/CODE/Rust/util-cli/target/debug/deps/anstyle_parse-7f367af1646d169f.d: /Users/adamgustafsson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-parse-0.2.1/src/lib.rs /Users/adamgustafsson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-parse-0.2.1/src/params.rs /Users/adamgustafsson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-parse-0.2.1/src/state/mod.rs /Users/adamgustafsson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-parse-0.2.1/src/state/definitions.rs /Users/adamgustafsson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-parse-0.2.1/src/state/table.rs
+
+/Users/adamgustafsson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-parse-0.2.1/src/lib.rs:
+/Users/adamgustafsson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-parse-0.2.1/src/params.rs:
+/Users/adamgustafsson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-parse-0.2.1/src/state/mod.rs:
+/Users/adamgustafsson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-parse-0.2.1/src/state/definitions.rs:
+/Users/adamgustafsson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-parse-0.2.1/src/state/table.rs:

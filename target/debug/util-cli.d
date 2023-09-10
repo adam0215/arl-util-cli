@@ -1,0 +1,1 @@
+/Users/adamgustafsson/Desktop/-/CODE/Rust/util-cli/target/debug/util-cli: /Users/adamgustafsson/Desktop/-/CODE/Rust/util-cli/src/lexer.rs /Users/adamgustafsson/Desktop/-/CODE/Rust/util-cli/src/main.rs /Users/adamgustafsson/Desktop/-/CODE/Rust/util-cli/src/parser.rs
