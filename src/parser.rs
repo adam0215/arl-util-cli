@@ -4,10 +4,10 @@ use crate::lexer::Token;
 
 #[derive(Debug, PartialEq)]
 pub struct ParseStackElement {
-    role: ParseStackElementRole,
+    pub role: ParseStackElementRole,
     prio: u8,
-    op_type: Option<ParseStackOperatorType>,
-    val: Option<ParseStackElementValueType>,
+    pub op_type: Option<ParseStackOperatorType>,
+    pub val: Option<ParseStackElementValueType>,
 }
 
 #[derive(Debug, PartialEq)]
