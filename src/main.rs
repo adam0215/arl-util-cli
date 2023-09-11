@@ -5,23 +5,41 @@ mod parser;
 
 use std::slice::Iter;
 
+use clap::{Arg, Command};
 use lexer::Lexer;
 use parser::{ParseStackElement, ParseStackElementValueType, ParseStackOperatorType, Parser};
 
 fn main() {
-    // Get tokens
-    let mut lexer = Lexer::new("avg(1,2,3,10,20)");
-    let tokens = lexer.tokenize();
+    // General app information
+    let app = Command::new("arl")
+        .version("0.1")
+        .about("Provides some totally random utility functions directly in the terminal.")
+        .author("Adam Gustafsson")
+        .arg(
+            Arg::new("expression")
+                .help("The function expression to execute")
+                .required(true)
+                .index(1),
+        )
+        .get_matches();
 
-    // Get RPN Stack
-    let mut parser = Parser::new(&tokens);
-    let stack = parser.parse();
+    if let Some(expression) = app.get_one::<String>("expression") {
+        println!("Expression: {}", expression);
 
-    print!("PARSED RPN STACK: {:#?}", stack);
+        // Get tokens
+        let mut lexer = Lexer::new(&expression);
+        let tokens = lexer.tokenize();
 
-    // Execute program
-    let mut arl = Arl::new(&stack);
-    arl.execute();
+        // Get RPN Stack
+        let mut parser = Parser::new(&tokens);
+        let stack = parser.parse();
+
+        // Execute program
+        let mut arl = Arl::new(&stack);
+        arl.execute();
+    } else {
+        eprintln!("Error: Expression argument is missing.");
+    }
 }
 pub struct Arl<'a> {
     exec_stack: Iter<'a, ParseStackElement>,
@@ -88,22 +106,3 @@ impl<'a> Arl<'a> {
         Some(String::new())
     }
 }
-
-// General app information
-// let app = Command::new("arl")
-//     .version("0.1")
-//     .about("Provides some totally random utility functions directly in the terminal.")
-//     .author("Adam Gustafsson")
-//     .arg(
-//         Arg::new("expression")
-//             .help("The function expression to execute")
-//             .required(true)
-//             .index(1),
-//     )
-//     .get_matches();
-//
-// if let Some(expression) = app.get_one::<String>("expression") {
-//     println!("Expression: {}", expression);
-// } else {
-//     eprintln!("Error: Expression argument is missing.");
-// }
