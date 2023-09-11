@@ -3,40 +3,27 @@
 mod lexer;
 mod parser;
 
+use std::slice::Iter;
+
 use lexer::Lexer;
-use parser::{ParseStackElement, Parser};
+use parser::{ParseStackElement, ParseStackElementValueType, ParseStackOperatorType, Parser};
 
 fn main() {
-    let mut lexer = Lexer::new("avg(1,2,3)");
+    // Get tokens
+    let mut lexer = Lexer::new("avg(1,2,3,10,20)");
     let tokens = lexer.tokenize();
 
+    // Get RPN Stack
     let mut parser = Parser::new(&tokens);
-
     let stack = parser.parse();
 
-    println!("GENERATED STACK: {:#?}", stack)
+    print!("PARSED RPN STACK: {:#?}", stack);
+
+    // Execute program
+    let mut arl = Arl::new(&stack);
+    arl.execute();
+}
+pub struct Arl<'a> {
+    exec_stack: Iter<'a, ParseStackElement>,
 }
 
-type RpnExecutionStack = Vec<ParseStackElement>;
-pub struct Arl {
-    exec_stack: RpnExecutionStack,
-}
-
-// General app information
-// let app = Command::new("arl")
-//     .version("0.1")
-//     .about("Provides some totally random utility functions directly in the terminal.")
-//     .author("Adam Gustafsson")
-//     .arg(
-//         Arg::new("expression")
-//             .help("The function expression to execute")
-//             .required(true)
-//             .index(1),
-//     )
-//     .get_matches();
-//
-// if let Some(expression) = app.get_one::<String>("expression") {
-//     println!("Expression: {}", expression);
-// } else {
-//     eprintln!("Error: Expression argument is missing.");
-// }
