@@ -32,10 +32,10 @@ fn main() {
 
         // Get RPN Stack
         let mut parser = Parser::new(&tokens);
-        let stack = parser.parse();
+        let rpn_instr_stack = parser.parse();
 
         // Execute program
-        let mut arl = Arl::new(&stack);
+        let mut arl = Arl::new(rpn_instr_stack);
         arl.execute();
     } else {
         eprintln!("Error: Expression argument is missing.");
