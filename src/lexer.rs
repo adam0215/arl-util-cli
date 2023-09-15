@@ -7,6 +7,7 @@ pub enum Token {
     Lparen,
     Rparen,
     Ident(String),
+    Ignore,
     _Illegal,
 }
 
@@ -25,6 +26,11 @@ impl<'a> Lexer<'a> {
         let mut tokens = Vec::new();
 
         while let Some(token) = self.next_token() {
+            // Dont push ignored tokens
+            if token == Token::Ignore {
+                continue;
+            }
+
             tokens.push(token)
         }
         tokens
@@ -70,6 +76,9 @@ impl<'a> Lexer<'a> {
                     _ => Some(Token::Ident(func_name)),
                 }
             }
+            // SPACES AND UNDERSCORES
+            ' ' => Some(Token::Ignore),
+            '\n' => Some(Token::Ignore),
 
             _ => None,
         }
