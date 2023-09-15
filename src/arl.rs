@@ -13,8 +13,6 @@ impl Arl {
         let mut stack: Vec<ParseStackElement> = Vec::new();
 
         for op in self.exec_stack.drain(..) {
-            print!("\n{:?}\n", op);
-
             match op.val {
                 // If number push
                 Some(ParseStackElementValueType::Number(_)) => {
@@ -30,12 +28,10 @@ impl Arl {
                     // FOUND IDENTIFIER
                     Some(ParseStackElementValueType::Identifier(i)) => match i.as_str() {
                         "avg" => {
-                            print!("IDENTIFIER! {:#?}\n", i);
-
                             run_avg_func(&mut stack);
                         }
                         "diff" => {
-                            print!("IDENTIFIER! {:#?}\n", i);
+                            run_diff_func(&mut stack);
                         }
                         // Identifier String Default
                         _ => continue,
@@ -64,5 +60,24 @@ fn run_avg_func(stack: &mut Vec<ParseStackElement>) {
 
     let avg: f32 = values.iter().sum::<f32>() / values.len() as f32;
 
-    print!("\n\nAVERAGE IS: {:#?}\n\n", avg);
+    print!("\nAVERAGE IS: {:#?}\n", avg);
+}
+
+fn run_diff_func(stack: &mut Vec<ParseStackElement>) {
+    let mut values = Vec::new();
+
+    while let Some(pop) = stack.pop() {
+        match pop.val {
+            Some(ParseStackElementValueType::Number(n)) => values.push(n as f32),
+            _ => break,
+        }
+    }
+
+    let mut diff: f32 = values.pop().unwrap_or(0.0);
+
+    while let Some(n) = values.pop() {
+        diff -= n
+    }
+
+    print!("\nDIFFERENCE IS: {:#?}\n", diff);
 }
