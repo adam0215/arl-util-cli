@@ -17,8 +17,6 @@ impl Arl {
         print_stack_debug(&self.exec_stack);
 
         for op in self.exec_stack.drain(..) {
-            print!("EXECUTING: {:?}\n", op);
-
             match op.val {
                 // If number push
                 Some(ParseStackElementValueType::Number(_)) => {
@@ -108,10 +106,10 @@ impl Arl {
                     // FOUND IDENTIFIER
                     Some(ParseStackElementValueType::Identifier(i)) => match i.as_str() {
                         "avg" => {
-                            run_avg_func(&mut stack);
+                            Self::run_avg_func(&mut stack);
                         }
                         "diff" => {
-                            run_diff_func(&mut stack);
+                            Self::run_diff_func(&mut stack);
                         }
                         // Identifier String Default
                         _ => continue,
@@ -148,40 +146,39 @@ impl Arl {
 
         values
     }
-}
+    fn run_avg_func(stack: &mut Vec<ParseStackElement>) {
+        let mut values = Vec::new();
 
-fn run_avg_func(stack: &mut Vec<ParseStackElement>) {
-    let mut values = Vec::new();
-
-    while let Some(pop) = stack.pop() {
-        match pop.val {
-            Some(ParseStackElementValueType::Number(n)) => values.push(n as f32),
-            _ => break,
+        while let Some(pop) = stack.pop() {
+            match pop.val {
+                Some(ParseStackElementValueType::Number(n)) => values.push(n as f32),
+                _ => break,
+            }
         }
+
+        let avg: f32 = values.iter().sum::<f32>() / values.len() as f32;
+
+        print!("\nAVERAGE IS: {:#?}\n", avg);
     }
 
-    let avg: f32 = values.iter().sum::<f32>() / values.len() as f32;
+    fn run_diff_func(stack: &mut Vec<ParseStackElement>) {
+        let mut values = Vec::new();
 
-    print!("\nAVERAGE IS: {:#?}\n", avg);
-}
-
-fn run_diff_func(stack: &mut Vec<ParseStackElement>) {
-    let mut values = Vec::new();
-
-    while let Some(pop) = stack.pop() {
-        match pop.val {
-            Some(ParseStackElementValueType::Number(n)) => values.push(n as f32),
-            _ => break,
+        while let Some(pop) = stack.pop() {
+            match pop.val {
+                Some(ParseStackElementValueType::Number(n)) => values.push(n as f32),
+                _ => break,
+            }
         }
+
+        let mut diff: f32 = values.pop().unwrap_or(1.0);
+
+        while let Some(n) = values.pop() {
+            diff -= n
+        }
+
+        print!("\nDIFFERENCE IS: {:#?}\n", diff);
     }
-
-    let mut diff: f32 = values.pop().unwrap_or(1.0);
-
-    while let Some(n) = values.pop() {
-        diff -= n
-    }
-
-    print!("\nDIFFERENCE IS: {:#?}\n", diff);
 }
 
 fn print_stack_debug(stack: &Vec<ParseStackElement>) {
