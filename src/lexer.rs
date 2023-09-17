@@ -6,6 +6,10 @@ pub enum Token {
     Comma,
     Lparen,
     Rparen,
+    Plus,
+    Hyphen,
+    Star,
+    Fslash,
     Ident(String),
     Ignore,
     _Illegal,
@@ -76,6 +80,11 @@ impl<'a> Lexer<'a> {
                     _ => Some(Token::Ident(func_name)),
                 }
             }
+            // MATH
+            '+' => Some(Token::Plus),
+            '-' => Some(Token::Hyphen),
+            '*' => Some(Token::Star),
+            '/' => Some(Token::Fslash),
             // SPACES AND UNDERSCORES
             ' ' => Some(Token::Ignore),
             '\n' => Some(Token::Ignore),
